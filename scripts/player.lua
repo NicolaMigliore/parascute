@@ -15,7 +15,7 @@ function _player_i()
     -- )
 
     player = new_entity(
-        new_position(0,56,16,16),
+        new_position(0,50,16,16),
         --new_sprite({1,3,5,7},0.05)
         new_sprite({
             {x=8,y=0,w=16,h=16},
@@ -24,8 +24,10 @@ function _player_i()
             {x=56,y=0,w=16,h=16}},
             0.05),
         new_control(⬅️,➡️,⬆️,⬇️,player_input),
-        new_intention()
+        new_intention(),
+        new_collider(0,0,16,16)
     )
+    add(entities,player)
 end
 
 function _player_u()

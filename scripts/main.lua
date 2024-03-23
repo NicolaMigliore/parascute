@@ -1,5 +1,7 @@
 function _init()
     debug=""
+    show_colliders = false
+
     mode="start"
     music(0)
 
@@ -9,6 +11,15 @@ function _init()
     gs = create_graphics_system()
 
     _player_i()
+
+    -- create ground 
+    add(entities,new_entity(
+        new_position(0,72,127,127),
+        nil,
+        nil,
+        nil,
+        new_collider(0,0,127,55)
+    ))
 end
 
 function _update60()

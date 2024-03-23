@@ -6,6 +6,7 @@ __lua__
 #include scripts/player.lua
 #include scripts/components.lua
 #include scripts/systems.lua
+#include scripts/utils.lua
 
 -- scenes
 __gfx__

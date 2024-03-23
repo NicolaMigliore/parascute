@@ -41,7 +41,7 @@ function new_control(_left,_right,_up,_down,_input)
     return c
 end
 
---- create new intention controller
+--- create new intention component
 -- describes the entity's intention to move in a direction
 function new_intention()
     local i = {
@@ -53,14 +53,28 @@ function new_intention()
     return i
 end
 
+--- create a collider box component
+-- it knows it's x and y offset relative to the entity position
+function new_collider(_ox,_oy,_w,_h)
+    local c = {
+        ox = _ox,
+        oy = _oy,
+        w = _w,
+        h = _h,
+        show = false,
+        has_collision = false
+    }
+    return c
+end
+
 --- create entity ---
-function new_entity(_pos,_spr,_ctrl,_inte)
+function new_entity(_pos,_spr,_ctrl,_inte,_col)
     local e = {
         position = _pos,
         sprite = _spr,
         control = _ctrl,
-        intention = _inte
+        intention = _inte,
+        collider = _col
     }
-    add(entities,e)
     return e
 end
