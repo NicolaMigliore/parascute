@@ -1,6 +1,7 @@
 function _init()
     debug=""
     show_colliders = true
+    score = 0
 
     mode="start"
     music(0)
@@ -35,13 +36,8 @@ function _init()
         nil,
         new_collider(0,0,4,4,true,nil),
         nil,
-        new_trigger(-3,-1,8,6,function(egg,other)
-            if other.kind == "player" then
-                del(entities,egg)
-                log("deleted egg")
-            end
-        end)
-    ))
+        nil)
+    )
 end
 
 function _update60()
@@ -50,12 +46,14 @@ function _update60()
     animation_system.update()
     trigger_system.update()
     _player_u()
+    debug=#entities
 end
 
 function _draw()
 
     -- _player_d()
     gs.update()
+    _ui_d()
 
     --debugging
     if debug != "" then

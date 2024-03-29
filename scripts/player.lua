@@ -16,7 +16,7 @@ function _player_i()
 
     player = new_entity(
         "player",
-        new_position(0,40,16,16),
+        new_position(0,56,16,16),
         --new_sprite({1,3,5,7},0.05)
         new_sprite({
             {x=8,y=0,w=16,h=16},
@@ -64,7 +64,12 @@ function _player_i()
                 loop = false
             }
         },"idle"),
-        nil
+        new_trigger(0,-5,16,6,function(_e,_o)
+            if _o.kind == "egg" then
+                del(entities,_o)
+                score +=1
+            end
+        end)
     )
     add(entities,player)
 end
