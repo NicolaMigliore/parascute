@@ -229,7 +229,7 @@ end
 function apply_gravity(_e)
     local _pos,_col = _e.position, _e.collider
     local new_y = _pos.y
-    new_y += 0.65
+    new_y += 0.65 * _e.collider.mass
     _col.is_falling = true
     _col.collide_b = false
 

@@ -78,7 +78,8 @@ end
 
 --- create a collider box component
 -- it knows it's x and y offset relative to the entity position
-function new_collider(_ox,_oy,_w,_h,_gravity,_oncollide)
+function new_collider(_ox,_oy,_w,_h,_gravity,_oncollide,_mass)
+    _mass = _mass or 1
     local c = {
         ox = _ox,
         oy = _oy,
@@ -93,6 +94,7 @@ function new_collider(_ox,_oy,_w,_h,_gravity,_oncollide)
         has_collision = false,
         is_falling = _gravity,
         oncollide = _oncollide,
+        mass = _mass,
     }
     c.get_bounding_box = function(_pos)
         --- @param _pos: poistion component

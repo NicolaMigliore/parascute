@@ -2,7 +2,7 @@ function _init()
     debug=""
     show_colliders = true
     score = 0
-    level = 1
+    level = 0
 
     mode="start"
     music(0)

@@ -1,10 +1,12 @@
 function spawn_egg(_x,_y)
+    egg_mass = 1 + (level/10)
+    debug=egg_mass
     -- create egg
     add(entities,new_entity({
         kind = "egg",
         position = new_position(_x,_y,4,4),
         sprite = new_sprite({{x=0,y=8,w=8,h=8}},0),
-        collider = new_collider(0,0,4,4,true,nil),
+        collider = new_collider(0,0,4,4,true,nil,egg_mass),
         trigger = new_trigger(0,4,4,2, function(_e,_o)
             if _o.kind == "player" then
                 del(entities,_e)
