@@ -70,7 +70,6 @@ function eagle_control(_e)
     local rnd_val = rnd(10)
     -- switch direction
     if rnd_val > 9.9 then
-        log("switch")
         if _e.intention.left then
             _e.intention.left = false
             _e.intention.right = true
@@ -78,7 +77,6 @@ function eagle_control(_e)
             _e.intention.left = true
             _e.intention.right = false
         end
-        -- debug = rnd_val .." ".. (_e.intention.left and "true" or "false")
     end
 
     -- advance drop timer

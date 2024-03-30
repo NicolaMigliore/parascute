@@ -69,16 +69,11 @@ function create_animation_system()
                 local anim_speed = cur_animation.speed
                 e.sprite.sprites = cur_animation.frames
 
-                -- if e.animation.active_anim == "move" then
-                --     log(e.animation.active_anim..": "..e.sprite.spr_i)
-                -- end
-                    -- progress animation
+                -- progress animation
                 if e.sprite.spr_i < #e.sprite.sprites + 1 - anim_speed then
                     e.sprite.spr_i += anim_speed
                 elseif cur_animation.loop then
                     e.sprite.spr_i = 1
-                -- elseif e.sprite.spr_i > #e.sprite.sprites then
-                --     e.sprite.spr_i = #e.sprite.sprites
                 end
             end
         end

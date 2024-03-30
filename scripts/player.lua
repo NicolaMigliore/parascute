@@ -6,14 +6,6 @@ function _player_i()
     player_speed = 0.5
     player_jump_force = 15
 
-    -- local anim_walk = new_animation({
-    --     new_sprite({8,0,16,16}),
-    --     new_sprite({24,0,16,16}),
-    --     new_sprite({40,0,16,16}),
-    --     new_sprite({56,0,16,16})},
-    --     0.05
-    -- )
-
     player = new_entity({
         kind = "player",
         position = new_position(0,56,16,16),
@@ -25,7 +17,7 @@ function _player_i()
         }),
         control = new_control(⬅️,➡️,⬆️,⬇️,0.7,1,player_input),
         intention = new_intention(),
-        collider = new_collider(0,0,16,16,true,player_collide),
+        collider = new_collider(0,0,16,16,true,nil),
         animation = new_animation({
             idle = {
                 frames = {
@@ -88,30 +80,6 @@ function _player_i()
     add(entities,player)
 end
 
-function _player_u()
-    --move
-    -- transition_timer += 1
-    -- if transition_timer > transition_time then
-    --     transition_timer = 0
-    -- end
-
-    -- transition_perc = transition_timer / transition_time
-    -- local dx = 128
-    -- player.position.x = flr(transition_perc * dx)
-
-    -- manage input
-    --player_input_old()
-    
-    --update animations
-    -- if player.sprite.spr_i < #player.sprite.sprites + 1 - player.sprite.anim_speed then
-    --     player.sprite.spr_i += player.sprite.anim_speed
-    -- else
-    --     player.sprite.spr_i = 1
-    -- end
-
-    
-end
-
 function player_input(_e)
     -- player movement
     _e.intention.left = btn(_e.control.left)
@@ -123,23 +91,6 @@ function player_input(_e)
         -- or _e.intention.up
         -- or _e.intention.down
     _e.intention.is_jumping = _e.intention.up
-end
-
-function delete_entity(_e)
-    log("------------")
-    log("len: "..#entities)
-    del(entities, _e)
-    log("len: "..#entities)
-end
-
---- Handle player collisions
--- @param _ce: Collided entity, a reference to the entity the player collided with
-function player_collide(_ce)
-    --log("Hit entity: ".._ce.kind)
-    if _ce.kind == "egg" then
-        --_ce.collider = nil
-        -- delete_entity(_ce)
-    end
 end
 
 function player_input_old()

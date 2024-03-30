@@ -33,16 +33,6 @@ function new_animation(_animations,_active_anim,_set_anim)
         active_anim = _active_anim,
     }
     a.set_animation = _set_anim
-    -- a.set_animation = function(_name,_spr)
-    --     if a.active_anim != _name then
-    --         if a.animations[_name] then
-    --             a.active_anim = _name
-    --         else
-    --             a.active_anim = "idle"
-    --         end
-    --         _spr.spr_i = 1
-    --     end
-    -- end
     return a
 end
 

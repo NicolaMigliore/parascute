@@ -30,12 +30,9 @@ function _update60()
     physics_system.update()
     animation_system.update()
     trigger_system.update()
-    _player_u()
 end
 
 function _draw()
-
-    -- _player_d()
     gs.update()
     _ui_d()
 
