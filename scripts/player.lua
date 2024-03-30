@@ -14,20 +14,19 @@ function _player_i()
     --     0.05
     -- )
 
-    player = new_entity(
-        "player",
-        new_position(0,56,16,16),
-        --new_sprite({1,3,5,7},0.05)
-        new_sprite({
+    player = new_entity({
+        kind = "player",
+        position = new_position(0,56,16,16),
+        sprite = new_sprite({
             {x=8,y=0,w=16,h=16},
             {x=24,y=0,w=16,h=16},
             {x=40,y=0,w=16,h=16},
             {x=56,y=0,w=16,h=16}
         }),
-        new_control(⬅️,➡️,⬆️,⬇️,player_input),
-        new_intention(),
-        new_collider(0,0,16,16,true,player_collide),
-        new_animation({
+        control = new_control(⬅️,➡️,⬆️,⬇️,0.7,1,player_input),
+        intention = new_intention(),
+        collider = new_collider(0,0,16,16,true,player_collide),
+        animation = new_animation({
             idle = {
                 frames = {
                     {x=96,y=16,w=16,h=16},
@@ -63,14 +62,29 @@ function _player_i()
                 speed = 0.04,
                 loop = false
             }
-        },"idle"),
-        new_trigger(0,-5,16,6,function(_e,_o)
-            if _o.kind == "egg" then
-                del(entities,_o)
-                score +=1
+        },
+        "idle",
+        function (_e)
+            local a = _e.animation
+            local new_anim = "idle"
+
+            if (_e.intention.is_moving) new_anim = "move"
+            if (_e.intention.is_jumping) new_anim = "jump"
+            if (_e.collider.is_falling) new_anim = "fall"
+
+            if a.active_anim != new_anim then
+                a.active_anim = new_anim
+                _e.sprite.spr_i = 1
             end
-        end)
-    )
+        end
+    ),
+        -- trigger = new_trigger(0,-5,16,6,function(_e,_o)
+        --     if _o.kind == "egg" then
+        --         del(entities,_o)
+        --         score +=1
+        --     end
+        -- end)
+    })
     add(entities,player)
 end
 

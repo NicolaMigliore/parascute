@@ -27,32 +27,35 @@ function new_sprite(_sprites,_flip_x,_flip_y)
     return s
 end
 
-function new_animation(_animations,_active_anim)
+function new_animation(_animations,_active_anim,_set_anim)
     local a = {
         animations = _animations,
         active_anim = _active_anim,
     }
-    a.set_animation = function(_name,_spr)
-        if a.active_anim != _name then
-            if a.animations[_name] then
-                a.active_anim = _name
-            else
-                a.active_anim = "idle"
-            end
-            _spr.spr_i = 1
-        end
-    end
+    a.set_animation = _set_anim
+    -- a.set_animation = function(_name,_spr)
+    --     if a.active_anim != _name then
+    --         if a.animations[_name] then
+    --             a.active_anim = _name
+    --         else
+    --             a.active_anim = "idle"
+    --         end
+    --         _spr.spr_i = 1
+    --     end
+    -- end
     return a
 end
 
 --- create new control component
 -- describes the intity's controls
-function new_control(_left,_right,_up,_down,_input)
+function new_control(_left,_right,_up,_down,_spd_x,_spd_y,_input)
     local c = {
         left = _left,
         right = _right,
         up = _up,
         down = _down,
+        spd_x = _spd_x,
+        spd_y = _spd_y,
         input = _input
     }
     return c
@@ -116,16 +119,16 @@ end
 
 
 --- create entity ---
-function new_entity(_kind,_pos,_spr,_ctrl,_inte,_col,_anim,_tri)
+function new_entity(_opts)
     local e = {
-        kind = _kind,
-        position = _pos,
-        sprite = _spr,
-        control = _ctrl,
-        intention = _inte,
-        collider = _col,
-        animation = _anim,
-        trigger = _tri,
+        kind = _opts.kind,
+        position = _opts.position,
+        sprite = _opts.sprite,
+        control = _opts.control,
+        intention = _opts.intention,
+        collider = _opts.collider,
+        animation = _opts.animation,
+        trigger = _opts.trigger,
     }
     return e
 end

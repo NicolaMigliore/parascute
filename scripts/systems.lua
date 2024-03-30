@@ -63,23 +63,8 @@ function create_animation_system()
         for e in all(entities) do
             if e.sprite and e.animation then
                 -- set animation sprites
-                if e.intention then
-                    --e.animation.active_anim = "idle"
-                    
-                    if (e.intention.is_moving) e.animation.set_animation("move", e.sprite)
-                    if (e.intention.is_jumping) e.animation.set_animation("jump", e.sprite)
-                    
-                    local is_falling = (e.collider and e.collider.is_falling) or false
-                    if is_falling and e.animation.animations.fall then 
-                        e.animation.set_animation("fall", e.sprite)
-                    end
-                    if e.intention.is_moving == false 
-                        and e.intention.is_jumping == false
-                        and is_falling==false
-                    then
-                        e.animation.set_animation("idle", e.sprite)
-                    end
-                end
+                if (e.animation.set_animation) e.animation.set_animation(e)
+ 
                 local cur_animation = e.animation.animations[e.animation.active_anim]
                 local anim_speed = cur_animation.speed
                 e.sprite.sprites = cur_animation.frames
@@ -131,25 +116,32 @@ function create_physics_system()
             -- update entity movement intention
             if e.position and e.intention then
 
+                local spd_x,spd_y = 1,1
+                if e.control then
+                    spd_x,spd_y = e.control.spd_x,e.control.spd_y
+                end
+
                 local can_move_x, can_move_y = true, true
                 local new_x = e.position.x
                 local new_y = e.position.y
 
                 -- left movement
                 if e.intention.left then
-                    new_x -=1
+                    new_x -= 1 * spd_x
                     if (e.sprite) e.sprite.flip_x = true
                 end
                 -- right movement
                 if e.intention.right then
-                    new_x +=1
+                    new_x += 1 * spd_x
                     if (e.sprite) e.sprite.flip_x = false
                 end
                 -- up movement
                 if e.intention.up then
-                    new_y -=1
+                    new_y -= 1 * spd_y
                 end
-                -- if e.intention.down then e.position.y +=1 end
+                if e.intention.down then
+                    new_y += 1 * spd_y
+                end
 
                 -- check for collisions with other entities
                 if e.collider then
@@ -245,7 +237,7 @@ function apply_gravity(_e)
     local entity_i,o = 1,nil
 
     for o in all(entities) do
-        if _e != o then
+        if _e != o and o.collider and o.position then
             local o_bb = o.collider.get_bounding_box(o.position)
             local e_bb = _col.get_bounding_box(_pos)
 
