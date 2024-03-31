@@ -21,7 +21,10 @@ function _init()
     add(entities,new_entity({
         kind = "environment",
         position = new_position(0,100,127,27),
-        collider = new_collider(0,0,127,55,false,nil),
+        collider = new_collider(0,0,127,55,{
+            gravity = false,
+            mass = 0,
+        }),
     }))
 end
 

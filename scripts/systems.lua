@@ -139,9 +139,9 @@ function create_physics_system()
                 end
 
                 -- check for collisions with other entities
-                if e.collider then
+                if e.collider and e.collider.is_solid then
                     for o in all(entities) do
-                        if o != e and o.collider then
+                        if o != e and o.collider and o.collider.is_solid == true then
                             local o_bb = o.collider.get_bounding_box(o.position)
                             local e_bb = e.collider.get_bounding_box(e.position)
 
@@ -170,7 +170,7 @@ function create_physics_system()
                                     e.collider.is_falling = false
                                 end
                             end
-                            if(e.collider and e.collider.has_collision) e.collider.oncollide(o)
+                            if(e.collider and e.collider.has_collision and e.collider.oncollide) e.collider.oncollide(o)
                         end
                     end
                 end

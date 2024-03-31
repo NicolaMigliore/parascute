@@ -17,7 +17,7 @@ function _player_i()
         }),
         control = new_control(⬅️,➡️,⬆️,⬇️,0.7,1,player_input),
         intention = new_intention(),
-        collider = new_collider(0,0,16,16,true,nil),
+        collider = new_collider(0,0,16,16,{}),
         animation = new_animation({
             idle = {
                 frames = {
