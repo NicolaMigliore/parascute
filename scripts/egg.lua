@@ -10,17 +10,10 @@ function spawn_egg(_x,_y)
             mass = egg_mass,
             is_solid = false,
         }),
-        trigger = new_trigger(0,4,4,2, function(_e,_o)
-            if _o.kind == "player" then
-                del(entities,_e)
-                score+=1
-                if score%3 == 0 then
-                    level += 1
-                    eagle.control.spd_x += 0.2
-                end
-            end
+        trigger = new_trigger(0,2,4,3, function(_e,_o)
             if _o.kind == "environment" then
                 del(entities,_e)
+                add(caught_eggs,false)
                 score-=1
             end
         end)

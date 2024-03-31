@@ -70,12 +70,17 @@ function _player_i()
             end
         end
     ),
-        -- trigger = new_trigger(0,-5,16,6,function(_e,_o)
-        --     if _o.kind == "egg" then
-        --         del(entities,_o)
-        --         score +=1
-        --     end
-        -- end)
+        trigger = new_trigger(-1,-1,18,8,function(_e,_o)
+            if _o.kind == "egg" then
+                del(entities,_o)
+                add(caught_eggs,true)
+                score +=1
+                if score%3 == 0 then
+                    level += 1
+                    eagle.control.spd_x += 0.2
+                end
+            end
+        end)
     })
     add(entities,player)
 end

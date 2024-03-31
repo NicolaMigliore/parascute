@@ -1,8 +1,9 @@
 function _init()
     debug=""
-    show_colliders = true
+    show_colliders = false
     score = 0
     level = 0
+    caught_eggs = {}
 
     mode="start"
     music(0)
@@ -20,7 +21,8 @@ function _init()
     -- create ground 
     add(entities,new_entity({
         kind = "environment",
-        position = new_position(0,100,127,27),
+        position = new_position(0,100,128,28),
+        sprite = new_sprite({{x=120,y=32,w=8,h=8}}),
         collider = new_collider(0,0,127,55,{
             gravity = false,
             mass = 0,

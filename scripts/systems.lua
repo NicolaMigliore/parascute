@@ -5,9 +5,6 @@ function create_graphics_system()
     gs.update = function()
         cls(12)
     
-        -- draw world
-        rectfill(0,100,128,127,4)
-    
         -- draw entities
         for e in all(entities) do
             -- render entity
