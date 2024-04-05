@@ -9,14 +9,17 @@ function _init()
     music(0)
 
     entities = {}
+    particles = {}
     control_system = create_control_system()
     physics_system = create_physics_system()
     gs = create_graphics_system()
     animation_system = create_animation_system()
     trigger_system = create_trigger_system()
+    particle_system = create_particle_system()
 
     _player_i()
     _eagle_i()
+    _basket_i()
 
     -- create ground 
     add(entities,new_entity({
@@ -35,6 +38,7 @@ function _update60()
     physics_system.update()
     animation_system.update()
     trigger_system.update()
+    particle_system.update()
 end
 
 function _draw()

@@ -8,48 +8,51 @@ function _player_i()
 
     player = new_entity({
         kind = "player",
-        position = new_position(0,56,16,16),
+        position = new_position(0,66,20,10),
         sprite = new_sprite({
-            {x=8,y=0,w=16,h=16},
-            {x=24,y=0,w=16,h=16},
-            {x=40,y=0,w=16,h=16},
-            {x=56,y=0,w=16,h=16}
+            {x=48,y=0,w=20,h=10},
+            {x=68,y=0,w=20,h=10},
+            {x=88,y=0,w=20,h=10},
+            {x=108,y=0,w=20,h=10}
         }),
         control = new_control(⬅️,➡️,⬆️,⬇️,0.7,1,player_input),
         intention = new_intention(),
-        collider = new_collider(0,0,16,16,{}),
+        -- collider = new_collider(0,0,16,16,{}),
+        collider = new_collider(4,3,12,7,{}),
         animation = new_animation({
             idle = {
                 frames = {
-                    {x=96,y=16,w=16,h=16},
-                    {x=112,y=16,w=16,h=16}
+                    -- {x=96,y=16,w=16,h=16},
+                    -- {x=112,y=16,w=16,h=16}
+                    {x=88,y=20,w=20,h=10},
+                    {x=108,y=20,w=20,h=10}
                 },
                 speed = 0.02,
                 loop = true
             },
             move = {
                 frames = {
-                    {x=8,y=0,w=16,h=16},
-                    {x=24,y=0,w=16,h=16},
-                    {x=40,y=0,w=16,h=16},
-                    {x=56,y=0,w=16,h=16}
+                    {x=48,y=0,w=20,h=10},
+                    {x=68,y=0,w=20,h=10},
+                    {x=88,y=0,w=20,h=10},
+                    {x=108,y=0,w=20,h=10}
                 },
                 speed = 0.05,
                 loop = true
             },
             jump = {
                 frames = {
-                    {x=56,y=0,w=16,h=16},
-                    {x=72,y=0,w=16,h=16},
-                    {x=88,y=0,w=16,h=16}
+                    {x=68,y=10,w=20,h=10},
+                    {x=88,y=10,w=20,h=10},
+                    {x=108,y=10,w=20,h=10}
                 },
                 speed = 0.05,
                 loop = false
             },
             fall = {
                 frames = {
-                    {x=88,y=0,w=16,h=16},
-                    {x=104,y=0,w=16,h=16}
+                    {x=88,y=10,w=20,h=10},
+                    {x=108,y=10,w=20,h=10}
                 },
                 speed = 0.04,
                 loop = false
@@ -70,17 +73,6 @@ function _player_i()
             end
         end
     ),
-        trigger = new_trigger(-1,-1,18,8,function(_e,_o)
-            if _o.kind == "egg" then
-                del(entities,_o)
-                add(caught_eggs,true)
-                score +=1
-                if score%3 == 0 then
-                    level += 1
-                    eagle.control.spd_x += 0.2
-                end
-            end
-        end)
     })
     add(entities,player)
 end

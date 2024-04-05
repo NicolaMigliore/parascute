@@ -48,6 +48,13 @@ function create_graphics_system()
                 )
             end
         end
+
+        -- draw particles
+        for p in all(particles) do
+            if p.kind == "pixel" then
+                pset(p.position.x,p.position.y,p.color)
+            end
+        end
     end
 
     return gs
@@ -85,7 +92,7 @@ function create_control_system()
     cs.update = function()
         for e in all(entities) do
             -- update entity movement intention
-            if e.control and e.intention then
+            if e.control then
                 e.control.input(e)
             end
         end
@@ -211,6 +218,33 @@ function create_trigger_system()
         end
     end
     return t
+end
+
+--- create particle system
+-- handles particle animations
+function create_particle_system()
+    local ps = {}
+    ps.update = function()
+        for p in all(particles) do
+            p.age+=1
+            if (p.age >= p.max_age) del(particles,p)
+
+            -- age of particle from 0 to 1
+            local age_perc = p.age/p.max_age
+
+            -- change color
+            if #p.colors > 1 then
+                -- color index based on age
+                local color_i = flr(age_perc * #p.colors)+1
+                p.color=p.colors[color_i]
+            end
+
+            --move particle
+            p.position.x+=p.dx
+            p.position.y+=p.dy
+        end
+    end
+    return ps
 end
 
 function colliding(x1,y1,w1,h1,x2,y2,w2,h2)

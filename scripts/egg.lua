@@ -1,6 +1,5 @@
 function spawn_egg(_x,_y)
     egg_mass = 1 + (level/10)
-    debug=egg_mass
     -- create egg
     add(entities,new_entity({
         kind = "egg",
@@ -16,6 +15,14 @@ function spawn_egg(_x,_y)
                 add(caught_eggs,false)
                 score-=1
             end
-        end)
+        end),
+        control = new_control(nil,nil,nil,nil,nil,nil,egg_control),
     }))
+end
+
+function egg_control(_e)
+    -- spawn trail particles
+    local offset = (sin(_e.position.y))---0.5
+    local px = _e.position.x + 2 + offset
+    spawntrail(px, _e.position.y, {15}, 6+rnd(3,3,7))
 end

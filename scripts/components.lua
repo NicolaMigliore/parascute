@@ -131,3 +131,18 @@ function new_entity(_opts)
     }
     return e
 end
+
+-- create particle --
+function new_particle(_kind,_pos,_dx,_dy,_max_age,_colors)
+    local p = {
+        position = _pos,
+        dx=_dx,
+        dy=_dy,
+        kind=_kind,
+        age=0,
+        max_age=_max_age,
+        colors=_colors,
+        color=_colors[1],
+    }
+    return p
+end

@@ -84,4 +84,9 @@ function eagle_control(_e)
         drop_timer -= 1
         if (drop_timer < 1) drop_timer = 50 spawn_egg(_e.position.x+6,_e.position.y+12)
     end
+
+    -- spawn trail particles
+    local px = _e.intention.left and _e.position.x+12 or _e.position.x+4
+    spawntrail(px, _e.position.y+6, {6,7})
+    spawntrail(px, _e.position.y+10, {6,7})
 end
