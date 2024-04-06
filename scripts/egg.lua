@@ -9,13 +9,7 @@ function spawn_egg(_x,_y)
             mass = egg_mass,
             is_solid = false,
         }),
-        trigger = new_trigger(0,2,4,3, function(_e,_o)
-            if _o.kind == "environment" then
-                del(entities,_e)
-                add(caught_eggs,false)
-                score-=1
-            end
-        end),
+        trigger = new_trigger(0,2,4,3,egg_trigger,"once"),
         control = new_control(nil,nil,nil,nil,nil,nil,egg_control),
     }))
 end
@@ -25,4 +19,12 @@ function egg_control(_e)
     local offset = (sin(_e.position.y))---0.5
     local px = _e.position.x + 2 + offset
     spawntrail(px, _e.position.y, {15}, 6+rnd(3,3,7))
+end
+
+function egg_trigger(_e,_o)
+    if _o.kind == "environment" then
+        del(entities,_e)
+        add(caught_eggs,false)
+        score-=1
+    end
 end

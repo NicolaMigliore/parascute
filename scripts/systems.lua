@@ -202,20 +202,34 @@ function create_trigger_system()
         for e in all(entities) do
             if e.position and e.trigger then
                 -- check for collisions with other entities
+                local triggered = false
                 for o in all(entities) do
-                    if o.position and o.collider then
+                    if e != o and o.position and o.collider then
                         local o_bb = o.collider.get_bounding_box(o.position)
     
                         if colliding(
                             e.position.x + e.trigger.ox, e.position.y + e.trigger.oy, e.trigger.w, e.trigger.h,
                             o_bb.x, o_bb.y, o_bb.w, o_bb.h
                         ) then
-                            e.trigger.f(e,o)
+                            triggered = true
+                            if e.trigger.kind == "once" then
+                                e.trigger.f(e,o)
+                                e.trigger = nil
+                                break
+                            elseif e.trigger.kind == "always" then
+                                e.trigger.f(e,o)
+                            elseif e.trigger.kind == "wait"
+                            and e.trigger.active == false then
+                                e.trigger.f(e,o)
+                                e.trigger.active = true
+                            end
                         end
                     end
                 end
             end
         end
+
+        if (triggered == false) e.trigger.active = false
     end
     return t
 end

@@ -105,13 +105,19 @@ function new_collider(_ox,_oy,_w,_h,_opts)
     return c
 end
 
-function new_trigger(_ox,_oy,_w,_h,_f)
+function new_trigger(_ox,_oy,_w,_h,_f,_kind)
+    --- kinds:
+    ---- "once"     - calls function once then delets the trigger
+    ---- "always"   - calls function every frame that it is triggered
+    ---- "wait"     - waits for trigger to no longer be activated then calls function
     local t = {
         ox = _ox,
         oy = _oy,
         w = _w,
         h = _h,
         f = _f,
+        kind = _kind,
+        is_active = false
     }
     return t
 end

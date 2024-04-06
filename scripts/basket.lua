@@ -27,21 +27,7 @@ function _basket_i()
         },"catch",nil),
         control = new_control(nil,nil,nil,nil,nil,nil,basket_control),
         intention = new_intention(),
-        trigger = new_trigger(-2,-1,11,8,function(_e,_o)
-            if _o.kind == "egg" then
-                del(entities,_o)
-                add(caught_eggs,true)
-                score +=1
-                if score%3 == 0 then
-                    level += 1
-                    eagle.control.spd_x += 0.2
-                end
-                
-                -- trigger animation
-                _e.animation.active_anim = "catch"
-                _e.sprite.spr_i = 1
-            end
-        end)
+        trigger = new_trigger(-2,-1,11,8,basket_trigger,"always")
     })
 
     add(entities, basket)
@@ -55,4 +41,20 @@ function basket_control(_e)
     if(player.intention.left) offset_x = -0.5
     _e.position.x = player.position.x + 6 + offset_x
     _e.position.y = player.position.y - 6 + offset_y
+end
+
+function basket_trigger(_e,_o)
+    if _o.kind == "egg" then
+        del(entities,_o)
+        add(caught_eggs,true)
+        score +=1
+        if score%3 == 0 then
+            level += 1
+            eagle.control.spd_x += 0.2
+        end
+        
+        -- trigger animation
+        _e.animation.active_anim = "catch"
+        _e.sprite.spr_i = 1
+    end
 end
