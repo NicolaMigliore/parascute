@@ -4,22 +4,22 @@ function _basket_i()
         kind = "basket",
         position = new_position(64,64,8,8),
         sprite = new_sprite({
-            {x=0,y=40,w=8,h=8}
+            {x=8,y=0,w=8,h=8}
         }),
         animation = new_animation({
             idle = {
                 frames = {
-                    {x=0,y=40,w=8,h=8}
+                    {x=8,y=0,w=8,h=8}
                 },
                 speed = 0.01,
                 loop = true
             },
             catch = {
                 frames = {
-                    {x=0,y=40,w=8,h=8},
-                    {x=8,y=40,w=8,h=8},
-                    {x=16,y=40,w=8,h=8},
-                    {x=0,y=40,w=8,h=8},
+                    {x=8,y=0,w=8,h=8},
+                    {x=16,y=0,w=8,h=8},
+                    {x=24,y=0,w=8,h=8},
+                    {x=8,y=0,w=8,h=8},
                 },
                 speed = 0.5,
                 loop = false
@@ -49,8 +49,10 @@ end
 
 function basket_control(_e)
     local offset_y = 0
+    local offset_x = 0.5
     -- debug=player.intention.left
     if(player.intention.is_moving) offset_y = sin(time())/2
-    _e.position.x = player.position.x + 6
+    if(player.intention.left) offset_x = -0.5
+    _e.position.x = player.position.x + 6 + offset_x
     _e.position.y = player.position.y - 6 + offset_y
 end

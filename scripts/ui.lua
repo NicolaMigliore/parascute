@@ -10,14 +10,10 @@ function _ui_d()
         y = (flr(i/13) * 9)+107
         
         if i <= #caught_eggs then
-            local sprite = caught_eggs[i] and 64 or 66
+            local sprite = caught_eggs[i] and 16 or 17
             spr(sprite, x, y)
         else
-            spr(65, x, y)
+            spr(18, x, y)
         end
-
     end
-
-    -- print("score: "..score,10,121,7)
-    -- print("level: "..level,50,121,7)
 end
