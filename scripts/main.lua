@@ -31,6 +31,25 @@ function _init()
             mass = 0,
         }),
     }))
+    -- create left border
+    add(entities,new_entity({
+        kind = "environment",
+        position = new_position(-5,0,-5,128),
+        collider = new_collider(0,0,5,128,{
+            gravity = false,
+            mass = 0,
+        }),
+    }))
+    -- create right border
+    add(entities,new_entity({
+        kind = "environment",
+        position = new_position(128,0,133,128),
+        collider = new_collider(0,0,5,128,{
+            gravity = false,
+            mass = 0,
+        }),
+    }))
+
 end
 
 function _update60()
