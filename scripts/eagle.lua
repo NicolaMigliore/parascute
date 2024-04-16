@@ -1,5 +1,5 @@
 function _eagle_i()
-    drop_timer = 5--100
+    drop_timer = 100
     eagle_spd = 1
 
     -- create eagle

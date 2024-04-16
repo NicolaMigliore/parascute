@@ -4,6 +4,8 @@ function create_graphics_system()
     local gs = {}
     gs.update = function()
         cls(12)
+
+        sort(entities, z_comparison)
     
         -- draw entities
         for e in all(entities) do
@@ -312,13 +314,17 @@ function apply_gravity(_e)
     end
 end
 
--- --- sort the elements
--- function sort(_list)
---     for i=2,#_list do
---         local j = i
---         while j > 1 and _list[j-1].position.y + _list[j-1].position.h < _list[j].position.y + _list[j].position.h do
---             _list[j],_list[j-1] = _list[j-1],_list[j]
---             j-=1
---         end
---     end
--- end
+function z_comparison(_a,_b)
+    return _a.position.z < _b.position.z
+end
+
+--- sort the elements
+function sort(_list,_comparison_f)
+    for i=2,#_list do
+        local j = i
+        while j > 1 and _comparison_f(_list[j-1], _list[j]) do
+            _list[j],_list[j-1] = _list[j-1],_list[j]
+            j-=1
+        end
+    end
+end

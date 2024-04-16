@@ -20,6 +20,7 @@ function _init()
     _player_i()
     _eagle_i()
     _basket_i()
+    _cloud_i()
 
     -- create ground 
     add(entities,new_entity({
@@ -58,6 +59,8 @@ function _update60()
     animation_system.update()
     trigger_system.update()
     particle_system.update()
+
+    _cloud_u()
 end
 
 function _draw()

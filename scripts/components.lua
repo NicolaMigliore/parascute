@@ -1,10 +1,12 @@
 --- create position component ---
 -- @param a parameter a desc
 -- @param b parameter b desc
-function new_position(_x,_y,_w,_h)
+function new_position(_x,_y,_w,_h,_z)
+    _z = _z or 1
     local p = {
         x = _x,
         y = _y,
+        z = _z,
         w = _w,
         h = _h,
         dx = 0,
