@@ -1,5 +1,5 @@
 function _eagle_i()
-    drop_timer = 100
+    drop_timer = 5--100
     eagle_spd = 1
 
     -- create eagle
@@ -82,7 +82,14 @@ function eagle_control(_e)
     -- advance drop timer
     if rnd_val > 7 then
         drop_timer -= 1
-        if (drop_timer < 1) drop_timer = 50 spawn_egg(_e.position.x+6,_e.position.y+12)
+        if drop_timer < 1 then
+            drop_timer = 50
+            if rnd()>0.5 then
+                spawn_egg(_e.position.x+6,_e.position.y+12)
+            else
+                spawn_rock(_e.position.x+6,_e.position.y+12)
+            end
+        end
     end
 
     -- spawn trail particles

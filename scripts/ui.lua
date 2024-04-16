@@ -10,10 +10,10 @@ function _ui_d()
         y = (flr(i/13) * 9)+107
         
         if i <= #caught_eggs then
-            local sprite = caught_eggs[i] and 16 or 17
+            local sprite = caught_eggs[i] and 1 or 2
             spr(sprite, x, y)
         else
-            spr(18, x, y)
+            spr(3, x, y)
         end
     end
 end

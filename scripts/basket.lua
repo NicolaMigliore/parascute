@@ -9,19 +9,29 @@ function _basket_i()
         animation = new_animation({
             idle = {
                 frames = {
-                    {x=8,y=0,w=8,h=8}
+                    {x=0,y=8,w=8,h=8}
                 },
                 speed = 0.01,
                 loop = true
             },
             catch = {
                 frames = {
-                    {x=8,y=0,w=8,h=8},
-                    {x=16,y=0,w=8,h=8},
-                    {x=24,y=0,w=8,h=8},
-                    {x=8,y=0,w=8,h=8},
+                    {x=0,y=8,w=8,h=8},
+                    {x=8,y=8,w=8,h=8},
+                    {x=16,y=8,w=8,h=8},
+                    {x=0,y=8,w=8,h=8},
                 },
-                speed = 0.5,
+                speed = 0.3,
+                loop = false
+            },
+            catch_full = {
+                frames = {
+                    {x=24,y=8,w=8,h=8},
+                    {x=32,y=8,w=8,h=8},
+                    {x=40,y=8,w=8,h=8},
+                    {x=24,y=8,w=8,h=8},
+                },
+                speed = 0.3,
                 loop = false
             }
         },"catch",nil),
@@ -54,7 +64,11 @@ function basket_trigger(_e,_o)
         end
         
         -- trigger animation
-        _e.animation.active_anim = "catch"
+        if score > 5 then
+            _e.animation.active_anim = "catch_full"
+        else 
+            _e.animation.active_anim = "catch"
+        end
         _e.sprite.spr_i = 1
 
         -- spawn particles
@@ -64,6 +78,37 @@ function basket_trigger(_e,_o)
             {5,6},
             { angle = 0.2, max_size = 2.5+rnd(2) }
         )
+        sfx(21)
+    elseif _o.kind=="rock" then
+        del(entities,_o)
+        score-=1
+
+       
+        --crack a cought egg
+        for i = #caught_eggs, 0, -1 do
+            log(i)
+            if caught_eggs[i] then 
+                caught_eggs[i] = false
+                
+                -- spawn particles
+                spawn_smoke(
+                    _o.position.x+2,
+                    _o.position.y+2,
+                    {5,6},
+                    { angle = 0.2, max_size = 2.5+rnd(2) }
+                )
+                spawn_shatter(_o.position.x,_o.position.y,{7},{chunk_sprites = {}})
+                break
+            end
+        end
+         -- trigger animation
+         if score > 5 then
+            _e.animation.active_anim = "catch_full"
+        else 
+            _e.animation.active_anim = "catch"
+        end
+        _e.sprite.spr_i = 1
+        
         sfx(21)
     end
 end

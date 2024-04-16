@@ -263,7 +263,6 @@ function create_particle_system()
             --shrink (based on position.w)
             if p.kind=="smoke" then
                 p.position.w=(1-age_perc)*p.max_size
-                log("dx: "..p.dx.." | x: "..p.position.x)
             end
 
             --move particle
