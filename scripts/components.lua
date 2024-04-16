@@ -139,7 +139,7 @@ function new_entity(_opts)
 end
 
 -- create particle --
-function new_particle(_kind,_pos,_dx,_dy,_max_age,_colors)
+function new_particle(_kind,_pos,_dx,_dy,_max_age,_colors,_max_size,_opts)
     local p = {
         position = _pos,
         dx=_dx,
@@ -149,6 +149,9 @@ function new_particle(_kind,_pos,_dx,_dy,_max_age,_colors)
         max_age=_max_age,
         colors=_colors,
         color=_colors[1],
+        max_size=_max_size,
+        has_gravity=_opts.has_gravity or false,
+        has_gravity=_opts.has_rotation or false,
     }
     return p
 end

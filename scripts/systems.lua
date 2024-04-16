@@ -51,8 +51,10 @@ function create_graphics_system()
 
         -- draw particles
         for p in all(particles) do
-            if p.kind == "pixel" then
+            if p.kind == "pixel" or p.kind == "gravity_pixel" then
                 pset(p.position.x,p.position.y,p.color)
+            elseif p.kind=="smoke" then
+                circfill(p.position.x,p.position.y,p.position.w,p.color)
             end
         end
     end
@@ -251,6 +253,17 @@ function create_particle_system()
                 -- color index based on age
                 local color_i = flr(age_perc * #p.colors)+1
                 p.color=p.colors[color_i]
+            end
+
+            -- apply gravity
+            if p.has_gravity then
+                p.dy+=0.05
+            end
+
+            --shrink (based on position.w)
+            if p.kind=="smoke" then
+                p.position.w=(1-age_perc)*p.max_size
+                log("dx: "..p.dx.." | x: "..p.position.x)
             end
 
             --move particle

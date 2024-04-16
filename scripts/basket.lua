@@ -56,5 +56,14 @@ function basket_trigger(_e,_o)
         -- trigger animation
         _e.animation.active_anim = "catch"
         _e.sprite.spr_i = 1
+
+        -- spawn particles
+        spawn_smoke(
+            _o.position.x+2,
+            _o.position.y+2,
+            {5,6},
+            { angle = 0.2, max_size = 2.5+rnd(2) }
+        )
+        sfx(21)
     end
 end

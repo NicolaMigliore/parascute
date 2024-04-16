@@ -9,9 +9,10 @@ function spawn_egg(_x,_y)
             mass = egg_mass,
             is_solid = false,
         }),
-        trigger = new_trigger(0,2,4,3,egg_trigger,"once"),
+        trigger = new_trigger(0,2,4,3,egg_trigger,"always"),
         control = new_control(nil,nil,nil,nil,nil,nil,egg_control),
     }))
+    sfx(20)
 end
 
 function egg_control(_e)
@@ -26,5 +27,9 @@ function egg_trigger(_e,_o)
         del(entities,_e)
         add(caught_eggs,false)
         score-=1
+
+        -- add Fxs
+        spawn_shatter(_e.position.x,_e.position.y,{7},{chunk_sprites = {}})
+        sfx(22)
     end
 end
