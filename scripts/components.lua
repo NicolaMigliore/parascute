@@ -24,7 +24,7 @@ function new_sprite(_sprites,_flip_x,_flip_y)
         sprites = _sprites,
         spr_i = 1,
         flip_x = _flip_x,
-        slip_y = _flip_y,
+        flip_y = _flip_y,
     }
     return s
 end

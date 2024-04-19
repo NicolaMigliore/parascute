@@ -84,9 +84,8 @@ function basket_trigger(_e,_o)
         score-=1
 
        
-        --crack a cought egg
+        --crack a caught egg
         for i = #caught_eggs, 0, -1 do
-            log(i)
             if caught_eggs[i] then 
                 caught_eggs[i] = false
                 

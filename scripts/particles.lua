@@ -33,7 +33,10 @@ function spawn_smoke(_x,_y,_colors,_opts)
 		local max_size = _opts.max_size or 0.5+rnd(2)
 		local dx = sin(angle)*0.05
 		local dy = cos(angle)*0.05
-		-- log(angle.." -> "..dx)
+
+		if (_opts.dx) dx = _opts.dx
+		if (_opts.dy) dx = _opts.dy 
+
 		local p = new_particle(
 			"smoke",
 			new_position(_x,_y,max_size,0),

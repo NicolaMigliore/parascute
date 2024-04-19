@@ -25,7 +25,7 @@ function spawn_cloud(_x,_y)
     add(entities,new_entity({
         kind ="cloud",
         position = new_position(_x,_y,16,16,2),
-        sprite = new_sprite({{x=sprite_x,y=32,w=16,h=16}},0),
+        sprite = new_sprite({{x=sprite_x,y=32,w=16,h=16}}),
         control = new_control(nil,nil,nil,nil,0.1,0.05,cloud_control),
         intention = new_intention()
     }))

@@ -81,13 +81,13 @@ function player_input(_e)
     -- player movement
     _e.intention.left = btn(_e.control.left)
     _e.intention.right = btn(_e.control.right)
-    _e.intention.up = btn(_e.control.up)
-    _e.intention.down = btn(_e.control.down)
+    -- _e.intention.up = btn(_e.control.up)
+    -- _e.intention.down = btn(_e.control.down)
     _e.intention.is_moving = _e.intention.left
         or _e.intention.right
         -- or _e.intention.up
         -- or _e.intention.down
-    _e.intention.is_jumping = _e.intention.up
+    -- _e.intention.is_jumping = _e.intention.up
 end
 
 function player_input_old()

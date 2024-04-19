@@ -4,7 +4,7 @@ function spawn_egg(_x,_y)
     add(entities,new_entity({
         kind = "egg",
         position = new_position(_x,_y,4,4),
-        sprite = new_sprite({{x=8,y=0,w=8,h=8}},0),
+        sprite = new_sprite({{x=8,y=0,w=8,h=8}}),
         collider = new_collider(0,0,4,4,{
             mass = egg_mass,
             is_solid = false,

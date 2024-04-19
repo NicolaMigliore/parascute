@@ -2,8 +2,9 @@
 -- handles game graphics
 function create_graphics_system()
     local gs = {}
-    gs.update = function()
-        cls(12)
+    gs.update = function(_bg_color)
+        _bg_color = _bg_color or 12
+        cls(_bg_color)
 
         sort(entities, z_comparison)
     
