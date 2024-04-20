@@ -56,8 +56,10 @@ function create_graphics_system()
         for p in all(particles) do
             if p.kind == "pixel" or p.kind == "gravity_pixel" then
                 pset(p.position.x,p.position.y,p.color)
-            elseif p.kind=="smoke" then
+            elseif p.kind == "smoke" then
                 circfill(p.position.x,p.position.y,p.position.w,p.color)
+            elseif p.kind == "sprite" then
+                spr(p.sprite,p.position.x,p.position.y,p.position.w,p.position.h)
             end
         end
     end

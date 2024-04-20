@@ -94,3 +94,22 @@ function spawn_shatter(_x,_y,_colors,_opts)
 	-- 	end
 	-- end
 end
+
+function spawn_sprite(_x,_y,_sprites,_opts)
+	local p = new_particle(
+		"sprite",
+		new_position(
+			_x,
+			_y,
+			_opts.w or 1,
+			_opts.h or 1
+		),
+		_opts.dx or 0,
+		_opts.dy or 0,
+		_opts.max_age or 30,
+		{},
+		1,
+		{ has_gravity = _opts.has_gravity, sprite = _sprites}
+	)
+	add(particles, p)
+end

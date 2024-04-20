@@ -4,6 +4,11 @@ function _init()
     mode="start"
     -- music(0)
 
+    -- set global lists
+    entities = {}
+    particles = {}
+    caught_eggs = {}
+
     -- load systems
     control_system = create_control_system()
     physics_system = create_physics_system()
