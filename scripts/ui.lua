@@ -1,3 +1,17 @@
+function _ui_i()
+    blink_color1 = {
+        colors={7,6,7},
+        ci=1,
+        color=7
+    }
+end
+
+function _ui_u()
+    blink_color1.ci+=1/30
+    if(blink_color1.ci>#blink_color1.colors+1) blink_color1.ci=1
+    blink_color1.color=blink_color1.colors[flr(blink_color1.ci)]
+end
+
 function _ui_d()
     palt(0,false)
     rect(4,104,123,126,0)

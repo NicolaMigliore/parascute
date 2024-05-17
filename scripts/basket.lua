@@ -60,7 +60,7 @@ function basket_trigger(_e,_o)
         score +=1
         if score%3 == 0 then
             level += 1
-            eagle.control.spd_x += 0.2
+            eagle.control.spd_x += 0.1
         end
         
         -- trigger animation

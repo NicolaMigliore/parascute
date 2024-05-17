@@ -1,6 +1,6 @@
 function _eagle_i()
     drop_timer = 100
-    eagle_spd = 1
+    eagle_spd = 0.7
 
     -- create eagle
     eagle = new_entity({
@@ -32,7 +32,7 @@ function _eagle_i()
 
         end
         ),
-        control = new_control(nil,nil,nil,nil,eagle_spd,0.2,eagle_control),
+        control = new_control(nil,nil,nil,nil,eagle_spd,0.1,eagle_control),
         intention = new_intention()
     })
     add(entities,eagle)
@@ -84,7 +84,7 @@ function eagle_control(_e)
         drop_timer -= 1
         if drop_timer < 1 then
             drop_timer = 50
-            if rnd()>0.5 then
+            if rnd()>0.3 then
                 spawn_egg(_e.position.x+6,_e.position.y+12)
             else
                 spawn_rock(_e.position.x+6,_e.position.y+12)

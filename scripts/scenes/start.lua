@@ -32,7 +32,7 @@ function _scene_start_d()
     palt(14, true)
     sspr(0,64,55,27,37,34)
     palt()
-    print("press ❎ to start",31,100,6)
+    print("press ❎ to start",31,100,blink_color1.color)
 end
 
 function load_scene_start()
@@ -41,6 +41,3 @@ function load_scene_start()
     mode = "start"
     music(5,1000)
 end
-
--- (12 * 4)+3+7 = 58
--- 64-29 = 35

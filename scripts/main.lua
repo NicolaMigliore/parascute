@@ -2,7 +2,7 @@ function _init()
     debug=""
     show_colliders = false
     mode="start"
-    -- music(0)
+    _ui_i()
 
     -- set global lists
     entities = {}
@@ -18,16 +18,14 @@ function _init()
     particle_system = create_particle_system()
 
     -- setup scene
-    --_scene_start_i()
     load_scene_start()
-    -- _scene_game_i()
 
     
 
 end
 
 function _update60()
-    
+    _ui_u()
 
     if mode == "start" then
         _scene_start_u()
@@ -39,8 +37,6 @@ function _update60()
 end
 
 function _draw()
-    
-
     if mode == "start" then
         _scene_start_d()
     elseif mode == "game" then

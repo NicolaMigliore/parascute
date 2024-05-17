@@ -22,26 +22,25 @@ function _scene_level_complete_u()
         if (finished_count) load_scene_game()
     end
     if (btnp(🅾️) and finished_count) load_scene_start()
-
-    debug=#egg_ents
 end
 
 function _scene_level_complete_d()
     -- animation
-    gs.update(0)
+    gs.update(4)
 
     -- score
-    local score_color = 3
+    local score_color = 6
     if (flash_color_timer > 0) score_color = flash_color
-    print("level complet",30,10,3)
-    print("score:"..score,65,62,score_color)
+
+    sspr(63,64,45,25,42,5) --107,88
+    print("score:"..score,58,62,score_color)
 
     -- commands prompt
-    if (not started_count) print("press ❎ to count eggs",33,100,6)
-    if (finished_count) print("press ❎ to restart",37,100,6) print("press 🅾️ to return to title",24,108,6)
+    if (not started_count) print("press ❎ to count eggs",21,100,blink_color1.color)
+    if (finished_count) print("press ❎ to restart",27,100,blink_color1.color) print("press 🅾️ to return to title",11,108,6)
 
     -- counted eggs
-    rect(4,70,123,92,3)
+    rect(4,70,123,92,1)
     rectfill(5,71,122,91,5)
     local row = 0
     for i=1,24 do
@@ -83,7 +82,6 @@ function load_scene_level_complete()
     
     for i=1, #caught_eggs do
         local egg_was_caught = caught_eggs[i]
-        -- spr(1, 60, 60-(i*9))
         local sprite_x = egg_was_caught and 8 or 16
         add(entities,new_entity({
             kind = "ui_egg",
@@ -125,15 +123,15 @@ function ui_egg_trigger(_e,_o)
     )
     spawn_shatter(_o.position.x,_o.position.y,{5,6},{})
     -- adjust score based on last egg
-    if caught_eggs[#caught_eggs] then
+    if caught_eggs[1] then
         score += 1
         flash_color = 11
     else
         score -= 1
         flash_color = 8
     end
-    add(counted_eggs, caught_eggs[#caught_eggs])
-    deli(caught_eggs,#caught_eggs)
+    add(counted_eggs, caught_eggs[1])
+    deli(caught_eggs,1)
     del(entities, _o)
     del(egg_ents, _o)
     
